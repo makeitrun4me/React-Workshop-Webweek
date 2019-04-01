@@ -1,26 +1,52 @@
-import React from "react";
-
-const fakeData = [
-  { postId: 1, author: "Lenz", title: "CoolesPost1", text: "Inhalt" },
-  { postId: 2, author: "John Doe", title: "Post2", text: "Inhalt2" },
-  { postId: 3, author: "Lenz", title: "uncoolesPost3", text: "Inhalt3" }
-];
-
+import React, { useEffect, useState } from "react";
+import { postsApi } from "../constants";
 export function Posts() {
+  const [status, setStatus] = useState("none"); // none or loading or error or done
+  const [data, setData] = useState(null);
+
+  useEffect(
+    function() {
+      setStatus("loading");
+      fetch(postsApi)
+        .then(function(result) {
+          return result.json();
+        })
+        .then(function(jsonData) {
+          setData(jsonData);
+          setStatus("done");
+        })
+        .catch(function(error) {
+          console.log(error);
+          setStatus("error");
+        });
+    },
+    [setStatus, setData]
+  );
+
+  if (status === "none") {
+    return "";
+  }
+
+  if (status === "loading") {
+    return "Loading";
+  }
+
+  if (status === "error") {
+    return "Error";
+  }
+
   return (
-    <React.Fragment>
-      <h1>Posts Component</h1>
-      <ul>
-        {fakeData.map(function(row) {
-          return (
-            <li key={row.postId}>
-              {row.author} schreibt: {row.title}
-              <br />
-              <pre>{row.text}</pre>
-            </li>
-          );
-        })}
-      </ul>
-    </React.Fragment>
+    <ul>
+      {data.documents.map(function(document) {
+        return (
+          <li key={document.name}>
+            <h2>{document.fields.title.stringValue}</h2>
+            <h5>Autor: {document.fields.author.stringValue}</h5>
+            <pre>{document.fields.text.stringValue}</pre>
+            <hr />
+          </li>
+        );
+      })}
+    </ul>
   );
 }
