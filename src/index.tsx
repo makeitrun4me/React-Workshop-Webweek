@@ -5,17 +5,26 @@ import { MeineKomponente } from "./MeineKomponente";
 import "./styles.css";
 
 // *****************
-function getNavigationHandler(target: string, setStatus) {
-  return function(event) {
-    event.preventDefault();
-    setStatus(target);
-  };
+
+/**
+ * funktion muss mit use beginnen! React HOOK
+ * @param target mit React use damit nicht immer neu regerendert wird
+ * @param setStatus
+ */
+function useNavigationHandler(target: string, setStatus) {
+  return React.useCallback(
+    function(event) {
+      event.preventDefault();
+      setStatus(target);
+    },
+    [target, setStatus]
+  );
 }
 
 function App() {
   const [status, setStatus] = React.useState("index"); // fuer Navigation
 
-  const indexOnClick = getNavigationHandler("index", setStatus);
+  const indexOnClick = useNavigationHandler("index", setStatus);
   function postsOnClick(event: Event) {
     // innere verschachtelte Funktion
     event.preventDefault();
