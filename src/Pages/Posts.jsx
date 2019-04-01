@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { ThemeProvider } from "@material-ui/styles";
 import { postsApi } from "../constants";
+import { Card } from "@material-ui/core";
 export function Posts() {
   const [status, setStatus] = useState("none"); // none or loading or error or done
   const [data, setData] = useState(null);
@@ -36,17 +38,16 @@ export function Posts() {
   }
 
   return (
-    <ul>
+    <>
       {data.documents.map(function(document) {
         return (
-          <li key={document.name}>
+          <Card key={document.name}>
             <h2>{document.fields.title.stringValue}</h2>
             <h5>Autor: {document.fields.author.stringValue}</h5>
             <pre>{document.fields.text.stringValue}</pre>
-            <hr />
-          </li>
+          </Card>
         );
       })}
-    </ul>
+    </>
   );
 }

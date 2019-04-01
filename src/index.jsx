@@ -9,6 +9,7 @@ import { Paper, createMuiTheme } from "@material-ui/core";
 
 import "./styles.css";
 import { ThemeProvider } from "@material-ui/styles";
+import CustomizedTable from "./Pages/CustomizedTable";
 
 // *****************
 
@@ -85,10 +86,25 @@ export function renderFkt() {
     }
   });
 
+  // const theme = createMuiTheme({
+  //   typography: {
+  //     useNextVariants: true
+  //   },
+  //   palette: {
+  //     primary: {
+  //       light: "#63ccff",
+  //       main: "#009be5",
+  //       dark: "#006db3",
+  //       contrastText: "#fff"
+  //     }
+  //   }
+  // });
+
   const rootElement = document.getElementById("root");
   render(
     <ThemeProvider theme={theme}>
       <App />
+      <CustomizedTable />
     </ThemeProvider>,
     rootElement
   );
