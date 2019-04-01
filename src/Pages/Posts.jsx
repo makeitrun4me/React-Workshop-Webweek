@@ -8,7 +8,7 @@ const fakeData = [
 
 export function Posts() {
   return (
-    <div>
+    <React.Fragment>
       <h1>Posts Component</h1>
       <ul>
         {fakeData.map(function(row) {
@@ -21,6 +21,6 @@ export function Posts() {
           );
         })}
       </ul>
-    </div>
+    </React.Fragment>
   );
 }
