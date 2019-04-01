@@ -7,12 +7,39 @@ import "./styles.css";
 // *****************
 
 function App() {
+  const [status, setStatus] = React.useState("index"); // fuer Navigation
+
+  function indexOnClick(event: Event) {
+    // innere verschachtelte Funktion
+    event.preventDefault();
+    setStatus("index");
+  }
+  function postsOnClick(event: Event) {
+    // innere verschachtelte Funktion
+    event.preventDefault();
+    setStatus("index");
+  }
+  function newOnClick(event: Event) {
+    // innere verschachtelte Funktion
+    event.preventDefault();
+    setStatus("index");
+  }
+
+  // const stauts = React.useState("index")[0];
   return (
     <div className="App">
       <nav>
-        <a href="">Startseite</a> <br />
-        <a href="">Post</a> <br />
-        <a href="">Nöues Post erstellen</a>
+        <a href="" onClick={indexOnClick}>
+          Startseite
+        </a>{" "}
+        <br />
+        <a href="" onClick={postsOnClick}>
+          Post
+        </a>{" "}
+        <br />
+        <a href="" onClick={newOnClick}>
+          Nöues Post erstellen
+        </a>
       </nav>
       <main>
         <h1>Welcome to Christophs Sandbox on Github</h1>
