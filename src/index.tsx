@@ -52,7 +52,7 @@ function App() {
         </a>{" "}
         <br />
         <a href="" onClick={newOnClick as any}>
-          Nöues Post erstellen
+          Neues Post erstellen
         </a>
       </nav>
       <main>
