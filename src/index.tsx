@@ -9,7 +9,7 @@ import "./styles.css";
 function App() {
   const [status, setStatus] = React.useState("index"); // fuer Navigation
 
-  function indexOnClick(event: Event) {
+  function indexOnClick(event?: Event) {
     // innere verschachtelte Funktion
     event.preventDefault();
     setStatus("index");
@@ -17,38 +17,42 @@ function App() {
   function postsOnClick(event: Event) {
     // innere verschachtelte Funktion
     event.preventDefault();
-    setStatus("index");
+    setStatus("posts");
   }
   function newOnClick(event: Event) {
     // innere verschachtelte Funktion
     event.preventDefault();
-    setStatus("index");
+    setStatus("new");
   }
 
   // const stauts = React.useState("index")[0];
   return (
     <div className="App">
       <nav>
-        <a href="" onClick={indexOnClick}>
+        <a href="" onClick={indexOnClick as any}>
           Startseite
         </a>{" "}
         <br />
-        <a href="" onClick={postsOnClick}>
+        <a href="" onClick={postsOnClick as any}>
           Post
         </a>{" "}
         <br />
-        <a href="" onClick={newOnClick}>
+        <a href="" onClick={newOnClick as any}>
           Nöues Post erstellen
         </a>
       </nav>
       <main>
-        <h1>Welcome to Christophs Sandbox on Github</h1>
+        {status === "index" && <h1>Index</h1>}
+        {status === "posts" && <h1>Posts</h1>}
+        {status === "new" && <h1>Newuer Post</h1>}
+
+        {/* <h1>Welcome to Christophs Sandbox on Github</h1>
         <h2>Start editing to see some magic happen!</h2>
 
         <div>jsx wird von babel in javascript transpiliert</div>
         <MeineKomponente name="uebergebenerName">
           <h5>Child element: Einen schönen Tag</h5>
-        </MeineKomponente>
+        </MeineKomponente> */}
       </main>
     </div>
   );
