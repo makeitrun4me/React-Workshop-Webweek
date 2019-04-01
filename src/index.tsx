@@ -48,7 +48,7 @@ function App() {
         </a>{" "}
         <br />
         <a href="" onClick={postsOnClick as any}>
-          Post
+          Posts
         </a>{" "}
         <br />
         <a href="" onClick={newOnClick as any}>
