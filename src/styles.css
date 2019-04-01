@@ -8,3 +8,12 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.App nav {
+  width: 34%;
+  border: 3px;
+  border-color: black;
+}
+
+.App main {
+  width: 64%;
+}

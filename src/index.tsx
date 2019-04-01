@@ -5,15 +5,17 @@ import { MeineKomponente } from "./MeineKomponente";
 import "./styles.css";
 
 // *****************
+function getNavigationHandler(target: string, setStatus) {
+  return function(event) {
+    event.preventDefault();
+    setStatus(target);
+  };
+}
 
 function App() {
   const [status, setStatus] = React.useState("index"); // fuer Navigation
 
-  function indexOnClick(event?: Event) {
-    // innere verschachtelte Funktion
-    event.preventDefault();
-    setStatus("index");
-  }
+  const indexOnClick = getNavigationHandler("index", setStatus);
   function postsOnClick(event: Event) {
     // innere verschachtelte Funktion
     event.preventDefault();
@@ -44,7 +46,7 @@ function App() {
       <main>
         {status === "index" && <h1>Index</h1>}
         {status === "posts" && <h1>Posts</h1>}
-        {status === "new" && <h1>Newuer Post</h1>}
+        {status === "new" && <h1>Neur Post</h1>}
 
         {/* <h1>Welcome to Christophs Sandbox on Github</h1>
         <h2>Start editing to see some magic happen!</h2>
